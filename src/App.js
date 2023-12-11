@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import './App.css'
 import Menu from './Menu/Menu';
 import HomePage from './HomePage/HomePage';
-import Footer from './Footer/Footer';
+
 import UserManual from './UserManual/UserManual';
 import LoginPage from './LoginPage/LoginPage';
 import RegisterPage from './RegisterPage/RegisterPage';

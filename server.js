@@ -17,11 +17,11 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const db = mysql.createConnection({
-  host: 'byovqvd0umvo56p600mu-mysql.services.clever-cloud.com',
+  host: 'bv0k40adtqoifdhew1s1-mysql.services.clever-cloud.com',
   user: 'um5ca0ercrpw4cah',
   password: 'wwAVjGTY46hrlGDqm6YP',
-  database: 'byovqvd0umvo56p600mu',
-  port: '3306',
+  database: 'bv0k40adtqoifdhew1s1',
+  port: '21748',
 });
 
 

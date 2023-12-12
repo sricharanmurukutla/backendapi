@@ -17,10 +17,10 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const db = mysql.createConnection({
-  host: 'bottmatosy45myuammk7-mysql.services.clever-cloud.com',
-  user: 'uxjiov790dadquns',
-  password: 'gmucsBoZytW0ns0KzDwY',
-  database: 'bottmatosy45myuammk7',
+  host: 'byovqvd0umvo56p600mu-mysql.services.clever-cloud.com',
+  user: 'um5ca0ercrpw4cah',
+  password: 'wwAVjGTY46hrlGDqm6YP',
+  database: 'byovqvd0umvo56p600mu',
   port: '3306',
 });
 
@@ -388,8 +388,8 @@ app.get("/user/validateToken", (req, res) => {
 //  console.log(`Server is running at http://155.138.223.29:${PORT}`);
 //});
 
-app.listen(PORT, '0.0.0.0' ,() => {
-  console.log(`Server is running `);
+app.listen(PORT, () => {
+  console.log(`Server is running at http://147.182.240.238:${PORT}`);
 });
 
 

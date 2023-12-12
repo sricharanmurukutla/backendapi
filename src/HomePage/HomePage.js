@@ -123,6 +123,9 @@ function HomePage() {
     const expirationTime = localStorage.getItem("tokenExpiration");
     console.log("Token:", token);
     console.log("Expiration Time:", expirationTime);
+    const fetchDelocatedCategories = 0;
+const selectedYearDeallocation = 0;
+const selectedMonthDeallocation = 0;
 
     if (token && expirationTime) {
       const currentTime = new Date().getTime();

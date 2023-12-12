@@ -67,7 +67,7 @@ function HomePage() {
   useEffect(() => {
     const fetchAllCategories = async () => {
       try {
-        const response = await axios.get('http://45.76.63.218:3002/api/get-all-categories');
+        const response = await axios.get('http://138.197.104.87:3002/api/get-all-categories');
         setAllCategories(response.data);
         const storedUserId = localStorage.getItem("userId");
 
@@ -82,7 +82,7 @@ function HomePage() {
 
   const fetchData = (year, month, userId) => {
     axios
-      .get(`http://45.76.63.218:3002/api/get-budgets/${year}/${month}/${userId}`)
+      .get(`http://138.197.104.87:3002/api/get-budgets/${year}/${month}/${userId}`)
       .then((response) => {
         setBudgets(response.data);
       })
@@ -95,7 +95,7 @@ function HomePage() {
     const storedUserId = localStorage.getItem("userId");
     axios
       .get(
-        `http://45.76.63.218:3002/api/get-table-data/${selectedYearTable}/${storedUserId}`
+        `http://138.197.104.87:3002/api/get-table-data/${selectedYearTable}/${storedUserId}`
       )
       .then((response) => {
         setTableData(response.data);
@@ -107,7 +107,7 @@ function HomePage() {
 
   const fetchUsedCategories = () => {
     axios
-      .get("http://45.76.63.218:3002/api/get-all-categories")
+      .get("http://138.197.104.87:3002/api/get-all-categories")
       .then((response) => {
         setUsedCategories(response.data);
         // Assuming you want to select the first category by default
@@ -228,7 +228,7 @@ function HomePage() {
   const fetchLineData = (userId, formattedStartMonth, formattedEndMonth) => {
     axios
       .get(
-        `http://45.76.63.218:3002/api/get-line-graph-data-range/${usedselectedCategory}/${startYear}/${formattedStartMonth}/${endYear}/${formattedEndMonth}/${userId}`
+        `http://138.197.104.87:3002/api/get-line-graph-data-range/${usedselectedCategory}/${startYear}/${formattedStartMonth}/${endYear}/${formattedEndMonth}/${userId}`
       )
       .then((response) => {
         setLineGraphData(response.data);

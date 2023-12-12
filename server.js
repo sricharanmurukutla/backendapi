@@ -6,7 +6,7 @@ const mysql = require('mysql2');
 const jwt = require('jsonwebtoken');
 const app = express();
 
-const PORT = process.env.PORT || 3000; 
+const PORT = 3002; 
 const compression = require('compression'); 
 
 const dotenv = require('dotenv'); 
@@ -426,5 +426,5 @@ app.get("/user/validateToken", (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Server is running at http://45.76.63.218:${PORT}`);
 });

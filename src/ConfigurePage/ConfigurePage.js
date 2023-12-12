@@ -19,7 +19,7 @@ function ConfigurePage({ updateHomePageData }) {
   useEffect(() => {
     const fetchAllCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/get-all-categories');
+        const response = await axios.get('http://45.76.63.218:3002/api/get-all-categories');
         setAllCategories(response.data);
         const storedUserId = localStorage.getItem("userId");
 
@@ -37,7 +37,7 @@ function ConfigurePage({ updateHomePageData }) {
 
   const fetchDelocatedCategories = (year, month, userId) => {
     axios
-      .get(`http://localhost:3000/api/get-budgets/${year}/${month}/${userId}`)
+      .get(`http://45.76.63.218:3002/api/get-budgets/${year}/${month}/${userId}`)
       .then((response) => {
         setCategoryDeallocationList(response.data);
       })
@@ -74,7 +74,7 @@ function ConfigurePage({ updateHomePageData }) {
     };
 
     try {
-      const response = await axios.post('http://localhost:3000/api/configure-budget', budgetData);
+      const response = await axios.post('http://45.76.63.218:3002/api/configure-budget', budgetData);
       console.log(response.data);
       toast.success('Budget Allocated Successfully!');
       if (typeof updateHomePageData === 'function') {
@@ -101,7 +101,7 @@ function ConfigurePage({ updateHomePageData }) {
     };
 
     try {
-      const response = await axios.post('http://localhost:3000/api/deallocation-budget', deallocateData);
+      const response = await axios.post('http://45.76.63.218:3002/api/deallocation-budget', deallocateData);
       console.log(response.data);
       toast.success('Budget Deallocated Successfully!');
       if (typeof updateHomePageData === 'function') {

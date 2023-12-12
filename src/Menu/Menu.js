@@ -32,7 +32,7 @@ function Menu() {
   const fetchUserDetails = async (userId) => {
     try {
       // Replace the following with your actual API endpoint to fetch user details
-      const response = await axios.get(`http://localhost:${3000}/api/users/${userId}`);
+      const response = await axios.get(`http://45.76.63.218:${3002}/api/users/${userId}`);
       const userData = response.data;
   
       // Assuming the API response has a "firstname" property

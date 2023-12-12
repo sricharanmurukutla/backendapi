@@ -16,6 +16,12 @@
   
   form {
     display: flex;
+    height: 75px;
+    flex-direction: column;
+  }
+  .form {
+    display: flex;
+    height: 75px;
     flex-direction: column;
   }
   
@@ -46,7 +52,6 @@
     background-color: #0056b3;
   }
   .sidebar {
-    height: 100%;
     width: 200px;
     // position: fixed;
     top: 0;

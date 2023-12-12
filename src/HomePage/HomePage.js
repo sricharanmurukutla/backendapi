@@ -37,6 +37,7 @@ function HomePage() {
   const [selectedMonth, setSelectedMonth] = useState("January");
   const [usedBudget, setUsedBudget] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [allCategories, setAllCategories] = useState([]);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedYearTable, setSelectedYearTable] = useState(
     new Date().getFullYear()
@@ -62,8 +63,21 @@ function HomePage() {
     fetchData(selectedYear, selectedMonth, storedUserId);
   }, [selectedYear, selectedMonth, selectedCategory, selectedYearTable]);
 
+ 
   useEffect(() => {
-    fetchUsedCategories(); // Fetch used categories when the component mounts
+    const fetchAllCategories = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/get-all-categories');
+        setAllCategories(response.data);
+        const storedUserId = localStorage.getItem("userId");
+
+        fetchDelocatedCategories(selectedYearDeallocation,selectedMonthDeallocation,storedUserId)
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchAllCategories();
   }, []);
 
   const fetchData = (year, month, userId) => {
@@ -193,31 +207,7 @@ function HomePage() {
     ],
   };
 
-  const handleUsedBudgetSubmit = async (e) => {
-    e.preventDefault();
 
-    const userId = localStorage.getItem("userId");
-    const usedBudgetNumber = parseFloat(usedBudget);
-
-    const payload = {
-      category: usedselectedCategory,
-      used: usedBudgetNumber,
-      month: usedselectedMonth,
-      year: usedselectedYear,
-      userId: userId,
-    };
-
-    try {
-      await axios.post("http://localhost:3000/api/enter-used-budget", payload);
-      console.log("Used Budget update successful");
-      fetchData(selectedMonth, userId);
-    } catch (error) {
-      console.error("Error entering used budget:", error);
-      if (error.response && error.response.data) {
-        console.error("Server error message:", error.response.data);
-      }
-    }
-  };
 
   const fetchLineGraphData = () => {
     const storedUserId = localStorage.getItem("userId");
@@ -258,7 +248,7 @@ function HomePage() {
     <div className="pagecontent" style={{ display: "flex" }}>
       <div
         className="sidebar"
-        style={{ height: "100%", marginTop: "20px", paddingTop: "20px" }}
+        style={{  marginTop: "20px", paddingTop: "20px" }}
       >
         <ul>
           <li>
@@ -283,7 +273,7 @@ function HomePage() {
           </li>
         </ul>
       </div>
-      <div className="homepage-container" style={{ paddingLeft: "25%" }}>
+      <div className="homepage-container">
         <div className="charts-container">
           {/* Month and Year Selection Form */}
           <form
@@ -436,7 +426,7 @@ function HomePage() {
           <form
             style={{
               width: "auto",
-              height: "170px",
+              height: "70px",
               display: "flex",
               flexDirection: "row",
               gap: "15px",
@@ -449,9 +439,9 @@ function HomePage() {
                 value={usedselectedCategory}
                 onChange={(e) => setUsedSelectedCategory(e.target.value)}
               >
-                {budgets.map((budget) => (
-                  <option key={budget.category} value={budget.category}>
-                    {budget.category}
+                {allCategories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
                   </option>
                 ))}
               </select>
@@ -465,27 +455,7 @@ function HomePage() {
                 onChange={(e) => setStartYear(e.target.value)}
               />
             </label>
-            <label>
-              Start Month:
-              <select
-                value={startMonth}
-                onChange={(e) => setStartMonth(e.target.value)}
-              >
-                {Array.from({ length: 12 }, (_, index) => {
-                  const monthValue = (index + 1).toString().padStart(2, "0");
-                  const monthName = new Date(2022, index, 1).toLocaleString(
-                    "default",
-                    { month: "long" }
-                  );
 
-                  return (
-                    <option key={monthValue} value={monthValue}>
-                      {monthName}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
             <label>
               End Year:
               <input
@@ -495,27 +465,7 @@ function HomePage() {
               />
             </label>
 
-            <label>
-              End Month:
-              <select
-                value={endMonth}
-                onChange={(e) => setEndMonth(e.target.value)}
-              >
-                {Array.from({ length: 12 }, (_, index) => {
-                  const monthValue = (index + 1).toString().padStart(2, "0");
-                  const monthName = new Date(2022, index, 1).toLocaleString(
-                    "default",
-                    { month: "long" }
-                  );
 
-                  return (
-                    <option key={monthValue} value={monthValue}>
-                      {monthName}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
             <button type="button" onClick={fetchLineGraphData}>
               Fetch Line Graph Data
             </button>

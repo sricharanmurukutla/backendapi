@@ -38,5 +38,7 @@
 }
 
 .mainContainer{
-  height: calc(100vh - 44px);
+ 
+  min-height: 645px;
+  max-height: auto;
 }

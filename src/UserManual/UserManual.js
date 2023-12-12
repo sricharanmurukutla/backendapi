@@ -1,33 +1,14 @@
 import React from "react";
 import "./UserManual.scss";
+import "./UserManual.scss";
+import Sidebar from "./Sidebar"; // Import the Sidebar component
+
 function UserManual() {
   return (
-    <div className="user-manual">
-      <div className="sidebar">
-        <ul>
-          <li>
-            <a href="/usermanual" tabIndex="3">
-              User Manual
-            </a>
-          </li>
-          <li>
-            <a href="/homepage" tabIndex="4">
-              HomePage
-            </a>
-          </li>
-          <li>
-            <a href="/configure" tabIndex="5">
-              Configure
-            </a>
-          </li>
-          <li>
-            <a href="/enterusedbudget" tabIndex="6">
-              Allocate Used Budget
-            </a>
-          </li>
-        </ul>
-      </div>
-
+    <div style={{ display: "flex", columnGap: "80px" }}>
+    <Sidebar/>
+    <div className="pagecontent">
+      
       <h1>Personal Budget Management System</h1>
 
       <h2>1. Introduction</h2>
@@ -97,6 +78,7 @@ function UserManual() {
         On the homepage, enter the used budget for a specific month, year, and
         category. Click "Submit" to update the system.
       </p>
+    </div>
     </div>
   );
 }

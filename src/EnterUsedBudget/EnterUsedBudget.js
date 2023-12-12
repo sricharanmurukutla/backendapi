@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "./EnterUsedBudget.scss";
 
+
 const EnterUsedBudget = () => {
   const [usedselectedCategory, setUsedSelectedCategory] = useState("");
   const [usedselectedYear, setUsedSelectedYear] = useState(
@@ -46,6 +47,7 @@ const EnterUsedBudget = () => {
     try {
       await axios.post("http://localhost:3000/api/enter-used-budget", payload);
       console.log("Used Budget update successful");
+      alert("Used Budget update successful");
       // You might want to call fetchData here or handle the success as needed
     } catch (error) {
       console.error("Error entering used budget:", error);
@@ -92,7 +94,7 @@ const EnterUsedBudget = () => {
             onChange={(e) => setUsedSelectedMonth(e.target.value)}
             style={styles.input}
           >
-            {[
+            {["select None",
               "January",
               "February",
               "March",
@@ -150,6 +152,8 @@ const EnterUsedBudget = () => {
         <button type="submit" style={styles.button}>
           Submit
         </button>
+
+
       </form>
     </div>
   </div>
@@ -158,9 +162,7 @@ const EnterUsedBudget = () => {
 
 const styles = {
   container: {
-    maxWidth: '400px',
-    margin: '50px auto',
-    height: 'calc(100vh - 44px)', // Wrap the value in backticks
+    margin: '50px auto', // Wrap the value in backticks
     alignItems: 'center', // Center horizontally
     justifyContent: 'center', // Center vertically
     padding: '20px',
@@ -177,7 +179,8 @@ const styles = {
   },
   form: {
     display: 'flex',
-    width: '230px',
+    width: 'auto',
+    height:'auto',
     alignItems: 'center', 
     justifyContent: 'space-around', // Corrected syntax
     flexDirection: 'column',
@@ -188,6 +191,7 @@ const styles = {
     color: '#333',
     padding: '10px',
     marginBottom: '10px',
+    width: '100%',
   },
   input: {
     height: '40px',

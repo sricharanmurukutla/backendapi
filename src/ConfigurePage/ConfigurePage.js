@@ -116,7 +116,7 @@ function ConfigurePage({ updateHomePageData }) {
   };
 
   // Array of all months
-  const months = [
+  const months = ['select none',
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];

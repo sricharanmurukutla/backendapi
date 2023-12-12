@@ -2,7 +2,6 @@
   "name": "personal-budget-react",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://138.197.104.87:3001",
   "dependencies": {
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
@@ -61,7 +60,10 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.[t|j]sx?$": "babel-jest"
+      "^.+\\.[t|j]jsx?$": "babel-jest"
     }
-  }
+  },
+  "NODE_PATH":"src/"
 }
+
+

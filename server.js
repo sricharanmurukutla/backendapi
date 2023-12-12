@@ -5,20 +5,10 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const jwt = require('jsonwebtoken');
 const app = express();
-
 const PORT = 3002; 
 const compression = require('compression'); 
-
 const dotenv = require('dotenv'); 
-
-
-  
-// Set up Global configuration access 
-//dotenv.config();
 require('dotenv').config();
-
-
-
 
 app.use(cors()); 
 app.use(compression({ level: 6, threshold: 100 * 1000 }));
@@ -26,12 +16,11 @@ app.use(compression({ level: 6, threshold: 100 * 1000 }));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-//connection url----mysql://um5ca0ercrpw4cah:wwAVjGTY46hrlGDqm6YP@byovqvd0umvo56p600mu-mysql.services.clever-cloud.com:3306/byovqvd0umvo56p600mu
 const db = mysql.createConnection({
-  host: 'byovqvd0umvo56p600mu-mysql.services.clever-cloud.com',
-  user: 'um5ca0ercrpw4cah',
-  password: 'wwAVjGTY46hrlGDqm6YP',
-  database: 'byovqvd0umvo56p600mu',
+  host: 'bottmatosy45myuammk7-mysql.services.clever-cloud.com',
+  user: 'uxjiov790dadquns',
+  password: 'gmucsBoZytW0ns0KzDwY',
+  database: 'bottmatosy45myuammk7',
   port: '3306',
 });
 
@@ -93,10 +82,6 @@ app.post('/api/login', (req, res) => {
     }
   });
 });
-
-
-
-
 
 
 
@@ -197,30 +182,6 @@ app.get('/api/users/:userId', (req, res) => {
     }
   });
 });
-
-
-//for deallocating
-app.post('/api/deallocation-budget', (req, res) => {
-  const { category, month, year, userId } = req.body;
-
-  console.log('Received deallocation request:', req.body);
-  db.query(
-    'DELETE FROM budgets WHERE category = UPPER(?) AND month = ? AND year = ? AND userid = ?',
-    [category, month, year, userId],
-    (err, results) => {
-      if (err) {
-        console.error('MySQL query error:', err);
-        res.status(500).send('Internal Server Error');
-      } else {
-        res.json(results);
-        console.log('Deallocated budget successfully:', results);
-      }
-    }
-  );
-});
-
-
-
 
 // get-budgets endpoint
 app.get('/api/get-budgets/:year/:month/:userId', (req, res) => {
@@ -398,33 +359,39 @@ const jwtSecretKey = process.env.JWT_SECRET_KEY || '1260';
 
 
 app.get("/user/validateToken", (req, res) => { 
-	// Tokens are generally passed in the header of the request 
-	// Due to security reasons. 
+  // Tokens are generally passed in the header of the request 
+  // Due to security reasons. 
 
-	let tokenHeaderKey = process.env.TOKEN_HEADER_KEY || '1260'; 
-	const jwtSecretKey = process.env.JWT_SECRET_KEY || '1260';
+  let tokenHeaderKey = process.env.TOKEN_HEADER_KEY || '1260'; 
+  const jwtSecretKey = process.env.JWT_SECRET_KEY || '1260';
 
-	try { 
-		const token = req.header(tokenHeaderKey); 
+  try { 
+    const token = req.header(tokenHeaderKey); 
 
-		const verified = jwt.verify(token, jwtSecretKey); 
-		if(verified){ 
-			return res.send("Successfully Verified"); 
-		}else{ 
-			// Access Denied 
-			return res.status(401).send(error); 
-		} 
-	} catch (error) { 
-		// Access Denied 
-		return res.status(401).send(error); 
-	} 
+    const verified = jwt.verify(token, jwtSecretKey); 
+    if(verified){ 
+      return res.send("Successfully Verified"); 
+    }else{ 
+      // Access Denied 
+      return res.status(401).send(error); 
+    } 
+  } catch (error) { 
+    // Access Denied 
+    return res.status(401).send(error); 
+  } 
 });
 
 
 
 
+//app.listen(PORT,'155.138.223.29', () => {
+//  console.log(`Server is running at http://155.138.223.29:${PORT}`);
+//});
 
-
-app.listen(PORT, '138.197.104.87', () => {
-  console.log(`Server is running at http://138.197.104.87:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is running at http://147.182.240.238:${PORT}`);
 });
+
+
+
+//http://155.138.223.29

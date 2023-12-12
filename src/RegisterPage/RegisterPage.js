@@ -11,7 +11,7 @@ const RegisterPage = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch('http://147.182.240.238:3002/api/register', {
+      const response = await fetch('https://charanbackendapi.onrender.com/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -67,10 +67,10 @@ function HomePage() {
   useEffect(() => {
     const fetchAllCategories = async () => {
       try {
-        const response = await axios.get('http://147.182.240.238:3002/api/get-all-categories');
+        const response = await axios.get('https://charanbackendapi.onrender.com/api/get-all-categories');
         setAllCategories(response.data);
         const storedUserId = localStorage.getItem("userId");
-
+//eslint-disable-next-line
         fetchDelocatedCategories(selectedYearDeallocation,selectedMonthDeallocation,storedUserId)
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -82,7 +82,7 @@ function HomePage() {
 
   const fetchData = (year, month, userId) => {
     axios
-      .get(`http://147.182.240.238:3002/api/get-budgets/${year}/${month}/${userId}`)
+      .get(`https://charanbackendapi.onrender.com/api/get-budgets/${year}/${month}/${userId}`)
       .then((response) => {
         setBudgets(response.data);
       })
@@ -95,7 +95,7 @@ function HomePage() {
     const storedUserId = localStorage.getItem("userId");
     axios
       .get(
-        `http://147.182.240.238:3002/api/get-table-data/${selectedYearTable}/${storedUserId}`
+        `https://charanbackendapi.onrender.com/api/get-table-data/${selectedYearTable}/${storedUserId}`
       )
       .then((response) => {
         setTableData(response.data);
@@ -107,7 +107,7 @@ function HomePage() {
 
   const fetchUsedCategories = () => {
     axios
-      .get("http://147.182.240.238:3002/api/get-all-categories")
+      .get("https://charanbackendapi.onrender.com/api/get-all-categories")
       .then((response) => {
         setUsedCategories(response.data);
         // Assuming you want to select the first category by default
@@ -231,7 +231,7 @@ const selectedMonthDeallocation = 0;
   const fetchLineData = (userId, formattedStartMonth, formattedEndMonth) => {
     axios
       .get(
-        `http://147.182.240.238:3002/api/get-line-graph-data-range/${usedselectedCategory}/${startYear}/${formattedStartMonth}/${endYear}/${formattedEndMonth}/${userId}`
+        `https://charanbackendapi.onrender.com/api/get-line-graph-data-range/${usedselectedCategory}/${startYear}/${formattedStartMonth}/${endYear}/${formattedEndMonth}/${userId}`
       )
       .then((response) => {
         setLineGraphData(response.data);

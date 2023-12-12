@@ -11,7 +11,7 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://147.182.240.238:3002/api/login', {
+      const response = await fetch('https://charanbackendapi.onrender.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

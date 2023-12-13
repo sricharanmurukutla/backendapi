@@ -10,7 +10,12 @@ const compression = require('compression');
 const dotenv = require('dotenv'); 
 require('dotenv').config();
 
-app.use(cors()); 
+
+app.use(cors({
+  origin: 'https://main--calm-liger-a794ac.netlify.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 app.use(compression({ level: 6, threshold: 100 * 1000 }));
 
 app.use(express.static('public'));
